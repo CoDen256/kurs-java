@@ -5,18 +5,19 @@ import io.github.aljolen.data.Config;
 import io.github.aljolen.data.SharedResources;
 import io.github.aljolen.data.SyncPoints;
 import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class AbstractTask extends Thread{
 
     protected final Config config;
     protected final SharedResources r;
-    protected final SyncPoints s;
+    protected final SyncPoints sync;
+    protected final int threadNum;
 
-    public AbstractTask(Config config, SharedResources r, SyncPoints sync) {
+    public AbstractTask(Config config, SharedResources r, SyncPoints sync, int threadNum) {
         this.config = config;
         this.r = r;
-        this.s = sync;
+        this.sync = sync;
+        this.threadNum = threadNum;
     }
 
     @Override
@@ -29,14 +30,6 @@ public abstract class AbstractTask extends Thread{
     }
 
     protected abstract void tryRun() throws InterruptedException, BrokenBarrierException;
-
-    public void computeMinAndUpdateA(AtomicInteger a, int ai) {
-        a.getAndUpdate(v -> Math.min(v, ai));
-    }
-
-    public void addAndUpdateB(AtomicInteger b, int bi) {
-        b.getAndAdd(bi);
-    }
 
     public int computeAi(int[] D, int chunkNum, int chunkSize) {
         return Calculator.min(Calculator.getVectorChunk(D, chunkNum, chunkSize));

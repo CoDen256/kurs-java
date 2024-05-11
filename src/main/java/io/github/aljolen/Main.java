@@ -33,7 +33,7 @@ public class Main {
     }
 
     public static int getThreadNum() {
-        System.out.println("Input the amount of elements: ");
+        System.out.println("Input the amount of threads: ");
         int p = sc.nextInt();
         System.out.println();
         return p;

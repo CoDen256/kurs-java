@@ -132,7 +132,7 @@ public class Calculator {
 
     public static int vectorByVector(int[] v0, int[] v1) {
         if (v0.length != v1.length) {
-            throw new IllegalArgumentException("Vectors must be of the same size but was "+v0.length+" and" + v1.length)
+            throw new IllegalArgumentException("Vectors must be of the same size but was " + v0.length + " and" + v1.length);
         }
         int result = 0;
         for (int i = 0; i < v0.length; i++) {
@@ -172,7 +172,6 @@ public class Calculator {
     }
 
     public static void insertVectorChunk(int[] m, int[] chunk, int chunkNum) {
-        ;
         for (int i = 0; i < chunk.length; ++i) {
             m[chunk.length * chunkNum + i] = chunk[i];
         }

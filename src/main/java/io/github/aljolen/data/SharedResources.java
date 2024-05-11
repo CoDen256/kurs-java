@@ -1,8 +1,7 @@
 package io.github.aljolen.data;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class SharedResources {
+    public int[] A;
     public int[] B;
     public int[] C;
     public int[] D;
@@ -11,10 +10,11 @@ public class SharedResources {
     public int[][] MX;
     public int[][] MR;
 
-    public final AtomicInteger a = new AtomicInteger(0);
-    public final AtomicInteger b = new AtomicInteger(0);
+    public int a = Integer.MAX_VALUE;
+    public int b = 0;
 
     public SharedResources(int N) {
+        A = new int[N];
         B = new int[N];
         C = new int[N];
         D = new int[N];
