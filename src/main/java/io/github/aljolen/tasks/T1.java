@@ -20,7 +20,7 @@ public class T1 extends T {
 
         super.tryRun();
 
-        Calculator.outputVector(r.A);
+        outputVector(r.A);
     }
 
 }

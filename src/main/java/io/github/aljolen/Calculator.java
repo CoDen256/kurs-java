@@ -187,24 +187,4 @@ public class Calculator {
         }
         return transposedMatrix;
     }
-
-    public static void outputMatrix(int[][] m) {
-        System.out.println(" [ ");
-        for (int i = 0; i < m.length; ++i) {
-            for (int j = 0; j < m[0].length; ++j) {
-                System.out.print("\t" + m[i][j] + "\t");
-            }
-            System.out.println();
-        }
-        System.out.println(" ] ");
-    }
-
-    public static void outputVector(int[] m) {
-        System.out.print("[");
-        for (int j = 0; j < m.length; ++j) {
-            System.out.print("\t" + m[j] + "\t");
-        }
-        System.out.print("]");
-        System.out.println();
-    }
 }

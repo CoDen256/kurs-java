@@ -19,23 +19,20 @@ public class Main {
 
        // Методи для введення з клавіатури
     public static int getFillValueOfMatrix() {
-        System.out.println("Input a fill value of matrix: ");
+        System.out.print("Input a fill value of matrix: ");
         int value = sc.nextInt();
-        System.out.println();
         return value;
     }
 
     public static int getAmountOfElements() {
-        System.out.println("Input the amount of elements: ");
+        System.out.print("Input the amount of elements: ");
         int n = sc.nextInt();
-        System.out.println();
         return n;
     }
 
     public static int getThreadNum() {
-        System.out.println("Input the amount of threads: ");
+        System.out.print("Input the amount of threads: ");
         int p = sc.nextInt();
-        System.out.println();
         return p;
     }
 
