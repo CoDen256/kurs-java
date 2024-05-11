@@ -1,5 +1,6 @@
 package io.github.aljolen;
 
+import io.github.aljolen.data.Config;
 import java.util.Scanner;
 
 /**
@@ -13,7 +14,7 @@ public class Main {
         int N = getAmountOfElements();
         int fillValue =  getFillValueOfMatrix();
         int P =  getThreadNum();
-        new Runner(N, fillValue, P).run();
+        new Runner(new Config(fillValue, N, P)).run();
     }
 
        // Методи для введення з клавіатури
