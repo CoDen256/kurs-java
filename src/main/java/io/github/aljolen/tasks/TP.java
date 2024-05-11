@@ -7,15 +7,16 @@ import io.github.aljolen.data.SharedResources;
 import io.github.aljolen.data.SyncPoints;
 import java.util.concurrent.BrokenBarrierException;
 
-public class T1 extends AbstractTask {
+public class TP extends AbstractTask {
 
 
-    public T1(Config config, SharedResources r, SyncPoints sync) {
+    public TP(Config config, SharedResources r, SyncPoints sync) {
         super(config, r, sync);
     }
 
     @Override
     protected void tryRun() throws InterruptedException, BrokenBarrierException {
+        r.d = 2; //Введення d
         r.MM = Calculator.createMatrix(config.N, config.N, config.fillValue); // Введення MM
 
         s.B1.await(); // Сигнал задачам та чекати на сигнали від задач про введення даних
@@ -28,7 +29,7 @@ public class T1 extends AbstractTask {
         s.S3.acquire();                               // Чекати на завершення сортування D2н в Т3
         r.sortAndInsertWholeD(r.D);                     // Сортування D
         float a1 = r.computeMaxBh(r.B, 0, config.H); // Обчислення а1 = Max(Bh)
-        computeMinAndUpdateA(a1);                             // Обчислення а
+        r.updateMaxA(a1);                             // Обчислення а
         s.B2.await();                                 // Сигнал задачам та чекати на сигнал про завершення обчислень а
 
         int e1 = r.copyE(); // Копіювання е

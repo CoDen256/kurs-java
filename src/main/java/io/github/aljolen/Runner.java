@@ -17,7 +17,7 @@ public class Runner {
      // Запуск потоків
     public void run() throws InterruptedException {
         SyncPoints points = new SyncPoints(config.P);
-        SharedResources resources = new SharedResources(config.N, config.P);
+        SharedResources resources = new SharedResources(config.N);
 
         Thread t1 = new T1(config, resources, points);
 

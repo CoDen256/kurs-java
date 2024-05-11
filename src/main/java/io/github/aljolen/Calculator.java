@@ -5,18 +5,18 @@ import java.util.Arrays;
 
 public class Calculator {
     //Методи для обчислень
-    public static float max(float[] vector) {
-        float maxVal = vector[0];
-        for (float v : vector) {
-            if (v > maxVal) {
-                maxVal = v;
+    public static int min(int[] vector) {
+        int minVal = vector[0];
+        for (int v : vector) {
+            if (v < minVal) {
+                minVal = v;
             }
         }
-        return maxVal;
+        return minVal;
     }
 
-    public static float[][] createMatrix(int rows, int cols, int value) {
-        float[][] result = new float[rows][cols];
+    public static int[][] createMatrix(int rows, int cols, int value) {
+        int[][] result = new int[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 result[i][j] = value;
@@ -25,17 +25,17 @@ public class Calculator {
         return result;
     }
 
-    public static float[] createVector(int rows, int value) {
-        float[] result = new float[rows];
+    public static int[] createVector(int rows, int value) {
+        int[] result = new int[rows];
         for (int i = 0; i < rows; i++) {
             result[i] = value;
         }
         return result;
     }
 
-    public static float[] sortVector(float[] vector) {
+    public static int[] sortVector(int[] vector) {
 
-        float[] result = Arrays.copyOf(vector, vector.length);
+        int[] result = Arrays.copyOf(vector, vector.length);
 
         if (vector.length <= 1) {
             return result;
@@ -45,7 +45,7 @@ public class Calculator {
 
             for (int i = 0; i < vector.length - 1; i++) {
                 if (result[i] > result[i + 1]) {
-                    float resultI = result[i];
+                    int resultI = result[i];
                     result[i] = result[i + 1];
                     result[i + 1] = resultI;
                 }
@@ -54,8 +54,8 @@ public class Calculator {
         return result;
     }
 
-    public static float[] concatVectors(float[] vec1, float[] vec2) {
-        float[] result = Arrays.copyOf(vec1, vec1.length + vec2.length);
+    public static int[] concatVectors(int[] vec1, int[] vec2) {
+        int[] result = Arrays.copyOf(vec1, vec1.length + vec2.length);
         for (int i = 0; i < vec2.length; i++) {
             result[vec1.length + i] = vec2[i];
         }
@@ -63,8 +63,8 @@ public class Calculator {
     }
 
 
-    public static float[][] scalarByMatrix(int scalar, float[][] m) {
-        float[][] result = new float[m.length][m[0].length];
+    public static int[][] scalarByMatrix(int scalar, int[][] m) {
+        int[][] result = new int[m.length][m[0].length];
         for (int row = 0; row < m.length; ++row) {
             for (int col = 0; col < m[0].length; ++col) {
                 result[row][col] = scalar * m[row][col];
@@ -73,16 +73,16 @@ public class Calculator {
         return result;
     }
 
-    public static float[] scalarByVector(float scalar, float[] m) {
-        float[] result = new float[m.length];
+    public static int[] scalarByVector(int scalar, int[] m) {
+        int[] result = new int[m.length];
         for (int row = 0; row < m.length; ++row) {
             result[row] = scalar * m[row];
         }
         return result;
     }
 
-    public static float[][] sumMatrix(float[][] m1, float[][] m2) {
-        float[][] result = new float[m1.length][m1[0].length];
+    public static int[][] sumMatrix(int[][] m1, int[][] m2) {
+        int[][] result = new int[m1.length][m1[0].length];
         for (int row = 0; row < m1.length; ++row) {
             for (int col = 0; col < m1[0].length; ++col) {
                 result[row][col] = m1[row][col] + m2[row][col];
@@ -91,19 +91,19 @@ public class Calculator {
         return result;
     }
 
-    public static float[] sumVector(float[] v1, float[] v2) {
-        float[] result = new float[v1.length];
+    public static int[] sumVector(int[] v1, int[] v2) {
+        int[] result = new int[v1.length];
         for (int row = 0; row < v1.length; ++row) {
             result[row] = v1[row] + v2[row];
         }
         return result;
     }
 
-    public static float[][] matrixByMatrix(float[][] m1, float[][] m2) {
-        float[][] result = new float[m1.length][m2[0].length];
+    public static int[][] matrixByMatrix(int[][] m1, int[][] m2) {
+        int[][] result = new int[m1.length][m2[0].length];
         for (int row = 0; row < m1.length; ++row) {
             for (int col = 0; col < m2[0].length; ++col) {
-                float sum = 0;
+                int sum = 0;
                 for (int inner = 0; inner < m1.length; ++inner) {
                     sum += m1[row][inner] * m2[inner][col];
                 }
@@ -113,14 +113,14 @@ public class Calculator {
         return result;
     }
 
-    public static float[] matrixByVector(float[][] m, float[] vector) {
-        float[] result = new float[m.length];
+    public static int[] matrixByVector(int[][] m, int[] vector) {
+        int[] result = new int[m.length];
         if (m[0].length != vector.length) {
             throw new IllegalArgumentException("VECTOR LENGTH != MATRIX LENGTH");
         }
 
         for (int row = 0; row < m.length; row++) {
-            float sum = 0.0f;
+            int sum = 0;
             for (int col = 0; col < vector.length; col++) {
                 sum += vector[col] * m[row][col];
             }
@@ -130,8 +130,19 @@ public class Calculator {
         return result;
     }
 
-    public static float[] getVectorChunk(float[] v, int chunkNum, int chunkSize) {
-        float[] chunkOfVector = new float[chunkSize];
+    public static int vectorByVector(int[] v0, int[] v1) {
+        if (v0.length != v1.length) {
+            throw new IllegalArgumentException("Vectors must be of the same size but was "+v0.length+" and" + v1.length)
+        }
+        int result = 0;
+        for (int i = 0; i < v0.length; i++) {
+            result += v0[i] * v1[i];
+        }
+        return result;
+    }
+
+    public static int[] getVectorChunk(int[] v, int chunkNum, int chunkSize) {
+        int[] chunkOfVector = new int[chunkSize];
 
         for (int i = 0; i < chunkSize; i++) {
             chunkOfVector[i] = v[chunkNum * chunkSize + i];
@@ -141,8 +152,8 @@ public class Calculator {
     }
 
 
-    public static float[][] getMatrixChunk(float[][] m, int chunkNum, int chunkSize) {
-        float[][] chunkOfMatrix = new float[m.length][chunkSize];
+    public static int[][] getMatrixChunk(int[][] m, int chunkNum, int chunkSize) {
+        int[][] chunkOfMatrix = new int[m.length][chunkSize];
         for (int row = 0; row < m.length; ++row) {
             for (int col = chunkSize * chunkNum; col < chunkSize * chunkNum + chunkSize; col++) {
                 chunkOfMatrix[row][col - chunkSize * chunkNum] = m[row][col];
@@ -151,7 +162,7 @@ public class Calculator {
         return chunkOfMatrix;
     }
 
-    public static void insertMatrixChunk(float[][] m, float[][] chunk, int chunkNum) {
+    public static void insertMatrixChunk(int[][] m, int[][] chunk, int chunkNum) {
 
         for (int i = 0; i < m.length; ++i) {
             for (int j = 0; j < chunk[0].length; ++j) {
@@ -160,15 +171,15 @@ public class Calculator {
         }
     }
 
-    public static void insertVectorChunk(float[] m, float[] chunk, int chunkNum) {
+    public static void insertVectorChunk(int[] m, int[] chunk, int chunkNum) {
         ;
         for (int i = 0; i < chunk.length; ++i) {
             m[chunk.length * chunkNum + i] = chunk[i];
         }
     }
 
-    public static float[][] transpose(float[][] m) {
-        float[][] transposedMatrix = new float[m[0].length][m.length];
+    public static int[][] transpose(int[][] m) {
+        int[][] transposedMatrix = new int[m[0].length][m.length];
 
         for (int i = 0; i < m.length; i++) {
             for (int j = 0; j < m[0].length; j++) {
@@ -178,7 +189,7 @@ public class Calculator {
         return transposedMatrix;
     }
 
-    public static void outputMatrix(float[][] m) {
+    public static void outputMatrix(int[][] m) {
         System.out.println(" [ ");
         for (int i = 0; i < m.length; ++i) {
             for (int j = 0; j < m[0].length; ++j) {
@@ -189,7 +200,7 @@ public class Calculator {
         System.out.println(" ] ");
     }
 
-    public static void outputVector(float[] m) {
+    public static void outputVector(int[] m) {
         System.out.print("[");
         for (int j = 0; j < m.length; ++j) {
             System.out.print("\t" + m[j] + "\t");

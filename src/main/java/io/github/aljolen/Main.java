@@ -4,7 +4,7 @@ import io.github.aljolen.data.Config;
 import java.util.Scanner;
 
 /**
- * Бариніна Аліна Лр №3 ІО-13 А
+ * Бариніна Аліна
  **/
 
 public class Main {
