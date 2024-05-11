@@ -67,18 +67,4 @@ public abstract class AbstractTask extends Thread{
 
         return Calculator.sumVector(left, right);                       // (H x 1)
     }
-
-    public int[] computeCh(int d0, int[] B, int[] Z, int[][] MM, int[][] MX, int chunkNum, int chunkSize) {
-
-        int[] Bh = Calculator.getVectorChunk(B, chunkNum, chunkSize);        // (H x 1)
-        int[][] MXh = Calculator.getMatrixChunk(MX, chunkNum, chunkSize);    // (N x H)
-
-        int[] scalarByVector = Calculator.scalarByVector(d0, Bh);            // H x 1
-        int[][] matrixByMatrix = Calculator.matrixByMatrix(MM, MXh);         // (N x N) * (N x H) = (N x H)
-        int[][] transposed = Calculator.transpose(matrixByMatrix);           //  transpose (N x H) -> (HxN)
-
-        int[] matrixByVector = Calculator.matrixByVector(transposed, Z);     // (H x N) * (N x 1) = (H x 1)
-        return Calculator.sumVector(scalarByVector, matrixByVector);           // (H x 1) + (H x 1)
-    }
-
 }
